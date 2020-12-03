@@ -6,7 +6,7 @@ import cv2
 
 IMAGE_FILE = os.path.join("wowscripts", "lure_shadowlands.png")
 CASTS = 500
-CONFIDENCE = 0.6
+CONFIDENCE = 0.5
 GRAYSCALE = False
 
 
