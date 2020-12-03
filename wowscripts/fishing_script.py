@@ -1,45 +1,62 @@
+from datetime import datetime, timedelta
+import os
+
 import pyautogui as gui
 import cv2
 
-IMAGE_FILE = 'wowscripts/lure_vale.png'
+IMAGE_FILE = os.path.join("wowscripts", "lure_shadowlands.png")
 CASTS = 30
-CONFIDENCE = .6
-GRAYSCALE = True
+CONFIDENCE = 0.5
+GRAYSCALE = False
+
 
 def cast():
     """
     Casts the line and returns the box region of the lure
     """
-    cast_icon = gui.locateCenterOnScreen('wowscripts/gofish_icon.png')
+    cast_icon = gui.locateCenterOnScreen(
+        os.path.join("wowscripts", "gofish_icon.png"),
+        confidence=0.6,
+    )
+
+    if cast_icon is None:
+        print("Could not find the fishing icon on screen. Casting again.")
+
+        return
+
     gui.moveTo(cast_icon)
     gui.click()
-    gui.PAUSE = 2.0
-    return 
+
+    return
+
 
 def catch(image):
     """
     takes a locateOnScreen object and clicks when the lure drops
     """
-    location = gui.locateOnScreen(image, confidence=CONFIDENCE, grayscale = GRAYSCALE)
-    if location == None:
-        return
-    print(location)
-    counter = 30
-    while gui.locateOnScreen(image, region=location, confidence=CONFIDENCE - .1, grayscale=GRAYSCALE) and counter > 0:
-        print('no fish yet')
-        counter -= 1
-    gui.click( x=(location[0] + 40), y=(location[1] + 25) )
-    if counter == 0:
-        print('missed one!')
+    start = datetime.now()
+
+    location = None
+    while location is None:
+        print("Nothing found... yet...")
+        location = gui.locateCenterOnScreen(image, confidence=CONFIDENCE, grayscale=GRAYSCALE)
+        if datetime.now() > start + timedelta(seconds=30):
+            print("Breaking, no image found!")
+            return
+
+    print(f"Found one at location: {location}...")
+
+    gui.moveTo(location)
+    gui.click()
+
     return
 
+
 def fish(image):
-    counter = CASTS
-    while counter > 0:
-        print('Cast {}'.format(counter))
-        cast()
-        catch(image)
-        counter -= 1
+    for counter in range(0, CASTS):
+            print(f"Cast {counter}")
+            cast()
+            catch(image)
+
 
 fish(IMAGE_FILE)
-
