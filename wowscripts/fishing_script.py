@@ -39,7 +39,9 @@ def catch(image):
     location = None
     while location is None:
         print("Nothing found... yet...")
-        location = gui.locateCenterOnScreen(image, confidence=CONFIDENCE, grayscale=GRAYSCALE)
+        location = gui.locateCenterOnScreen(
+            image, confidence=CONFIDENCE, grayscale=GRAYSCALE
+        )
         if datetime.now() > start + timedelta(seconds=30):
             print("Breaking, no image found!")
             return
@@ -54,9 +56,9 @@ def catch(image):
 
 def fish(image):
     for counter in range(0, CASTS):
-            print(f"Cast {counter}")
-            cast()
-            catch(image)
+        print(f"Cast {counter}")
+        cast()
+        catch(image)
 
 
 fish(IMAGE_FILE)
