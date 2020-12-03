@@ -5,8 +5,8 @@ import pyautogui as gui
 import cv2
 
 IMAGE_FILE = os.path.join("wowscripts", "lure_shadowlands.png")
-CASTS = 30
-CONFIDENCE = 0.5
+CASTS = 500
+CONFIDENCE = 0.6
 GRAYSCALE = False
 
 
@@ -36,9 +36,13 @@ def catch(image):
     """
     start = datetime.now()
 
+    print("Watching for lure bob... ")
     location = None
+    counter = 0
+
     while location is None:
-        print("Nothing found... yet...")
+        counter += 1
+        print(counter, end="... ")
         location = gui.locateCenterOnScreen(
             image, confidence=CONFIDENCE, grayscale=GRAYSCALE
         )
@@ -55,7 +59,7 @@ def catch(image):
 
 
 def fish(image):
-    for counter in range(0, CASTS):
+    for counter in range(1, CASTS + 1):
         print(f"Cast {counter}")
         cast()
         catch(image)
