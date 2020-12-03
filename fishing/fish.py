@@ -3,7 +3,7 @@ import os
 from time import sleep
 
 import pyautogui as gui
-import cv2
+from pyscreenshot import grab
 
 IMAGE_FILE = os.path.join("lure.png")
 CASTS = 500
@@ -11,8 +11,7 @@ CONFIDENCE = 0.6
 GRAYSCALE = False
 
 # Tweak the threshold depending on the background.
-# In Ashenfell for Scoria Fish, try 12 or higher. Most of the time, use 6.
-THRESHOLD = 9.5
+THRESHOLD = 20
 
 # Tweak the iterations depending on how fast your machine can screen capture.
 ITERATIONS = 90
@@ -80,7 +79,7 @@ def catch(location):
     print(f"Watching location ({location.x}, {location.y})...")
 
     for x in range(0, ITERATIONS):
-        current_image = grab(bbox=CAPTURE_REGION)
+        current_image = grab(bbox=capture_region)
 
         pairs = zip(original_image.getdata(), current_image.getdata())
         if len(original_image.getbands()) == 1:
