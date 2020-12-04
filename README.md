@@ -34,7 +34,7 @@ This approach makes it important for you to do a few things to set this up.
 
 1. Make sure you find a placid place where there aren't any changes in lighting, fish or monsters or other players.
 1. From your menu, click "System" and "Graphics". Set "Liquid Detail" to "Low". It'll make it easier for the computer to "see" the lure.
-1. Scroll is so you're in first person view and can't see your character on screen, just the water.
+1. Scroll your view in, so you're in first person view and can't see your character on screen, just the water.
 1. A good spot for Shadowlands fishing in Maldraxxus, 62.5, 71.75, facing south.
 
 So I can foresee a few problems with this initial code:
