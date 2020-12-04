@@ -6,7 +6,7 @@ Using pyautogui to automate different repetitive tasks in World of Warcraft MMOR
 ```python
 python3 -m venv pyautogui_venv
 . pyautogui_venv/bin/activate
-pip install pyautogui ipython numpy==1.19.3 pillow
+pip install pyautogui ipython numpy==1.19.3 pillow pyscreenshot
 ```
 
 ## Fishing Script
