@@ -6,12 +6,12 @@ import pyautogui as gui
 from pyscreenshot import grab
 
 IMAGE_FILE = os.path.join("lure.png")
-CASTS = 500
+CASTS = 5000
 CONFIDENCE = 0.6
 GRAYSCALE = False
 
 # Tweak the threshold depending on the background.
-THRESHOLD = 20
+THRESHOLD = 15
 
 # Tweak the iterations depending on how fast your machine can screen capture.
 ITERATIONS = 90
