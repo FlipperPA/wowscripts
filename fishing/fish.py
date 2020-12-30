@@ -7,11 +7,11 @@ from pyscreenshot import grab
 
 IMAGE_FILE = os.path.join("lure.png")
 CASTS = 5000
-CONFIDENCE = 0.6
+CONFIDENCE = 0.5
 GRAYSCALE = False
 
 # Tweak the threshold depending on the background.
-THRESHOLD = 15
+THRESHOLD = 17
 
 # Tweak the iterations depending on how fast your machine can screen capture.
 ITERATIONS = 90
@@ -53,7 +53,7 @@ def find_lure(image):
         location = gui.locateCenterOnScreen(
             image, confidence=CONFIDENCE, grayscale=GRAYSCALE
         )
-        if datetime.now() > start + timedelta(seconds=30):
+        if datetime.now() > start + timedelta(seconds=5):
             print("Breaking, no image found!")
             return None
 
